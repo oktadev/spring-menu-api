@@ -8,13 +8,13 @@ This repository contains a Spring Boot API starter project and demo project, bot
 > - [Auth0 account](https://auth0.com/signup)
 > - [Auth0 CLI 1.0.0](https://github.com/auth0/auth0-cli#installation)
 
-## Run the demo project
+## Run the API demo project
 
-To run the demo project, execute the following commands:
+To run the API demo project, which has the required dependencies for security configuration, execute the following commands:
 
 ```bash
 git clone https://github.com/indiepopart/spring-menu-api.git
-cd demo
+cd spring-menu-api/demo
 ```
 
 ## Register the API to Auth0
@@ -38,6 +38,8 @@ auth0 apis create \
   --offline-access=false \
   --signing-alg "RS256"
 ```
+
+The first line in the command output will contain your Auth0 domain.
 
 ## Run the Spring Boot API resource server
 
@@ -74,6 +76,8 @@ auth0 apps create \
   --web-origins https://dashboard.whatabyte.app
 ```
 
+The ClientID in the output will be required in the next step.
+
 Go to the [WHATABYTE Dashboard](https://dashboard.whatabyte.app/home), and set _API Server Base URL_ to http://localhost:8080. Toggle on **Enable Authentication Features** and set the following values:
 
 - Auth0 Domain: \<your-auth0-domain\>
@@ -93,7 +97,7 @@ Create some test users with the Auth0 CLI.
 auth0 users create
 ```
 
-Create the `menu-api` role in the Auth0 tenant:
+Create the `menu-admin` role in the Auth0 tenant:
 
 ```shell
 auth0 roles create
