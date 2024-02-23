@@ -139,14 +139,14 @@ exports.onExecutePostLogin = async (event, api) => {
 Save the file. Then deploy the action:
 
 ```shell
-auth0 actions deploy \<ACTION_ID\>
+auth0 actions deploy <ACTION_ID>
 ```
 
 Attach the action to the login flow. You can do this with Auth0 [Management API for Actions](https://auth0.com/docs/api/management/v2#!/Actions/patch_bindings):
 
 ```shell
 auth0 api patch "actions/triggers/post-login/bindings" \
-  --data '{"bindings":[{"ref":{"type":"action_id","value":"\<ACTION_ID\>"},"display_name":"Add Roles"}]}'
+  --data '{"bindings":[{"ref":{"type":"action_id","value":"<ACTION_ID>"},"display_name":"Add Roles"}]}'
 ```
 
 Find the Menu API ID with:
@@ -158,7 +158,7 @@ auth0 apis list
 Enable RBAC for the Menu API:
 
 ```shell
-auth0 api patch "resource-servers/API_ID" \
+auth0 api patch "resource-servers/<API_ID>" \
   --data '{ "enforce_policies": true, "token_dialect": "access_token_authz" }'
 ```
 
